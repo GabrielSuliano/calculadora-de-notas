@@ -1,0 +1,312 @@
+﻿/* Variáveis de design da página de cadastro */
+:root {
+    /* Define família tipográfica principal */
+    --font-base: "Segoe UI", "Trebuchet MS", sans-serif;
+    /* Define raio padrão de cantos */
+    --radius: 12px;
+    /* Define raio maior para cartões */
+    --radius-lg: 20px;
+    /* Define cor principal do texto */
+    --text-main: #ffffff;
+    /* Define cor secundária do texto */
+    --text-soft: #f7e7ff;
+    /* Define cor para links de destaque */
+    --accent-link: #ffd6f6;
+    /* Define fundo translúcido do cartão */
+    --card-bg: rgba(255, 255, 255, 0.15);
+    /* Define borda suave do cartão */
+    --card-border: rgba(255, 255, 255, 0.22);
+    /* Define sombra principal do cartão */
+    --card-shadow: 0 24px 50px rgba(0, 0, 0, 0.33);
+    /* Define gradiente principal do botão */
+    --btn-gradient: linear-gradient(120deg, #ff512f, #dd2476);
+    /* Define sombra do botão em hover */
+    --btn-shadow: 0 12px 24px rgba(221, 36, 118, 0.4);
+}
+
+/* Aplica box model previsível em todos os elementos */
+* {
+    /* Inclui padding e borda no cálculo de largura/altura */
+    box-sizing: border-box;
+}
+
+/* Fundo geral da página de cadastro */
+body {
+    /* Define tipografia global */
+    font-family: var(--font-base);
+    /* Remove margens padrão */
+    margin: 0;
+    /* Garante altura da viewport */
+    min-height: 100vh;
+    /* Centraliza formulário na tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Mantém degradê no mesmo estilo visual */
+    background: linear-gradient(140deg, #1f1c2c 0%, #453a94 55%, #e94057 100%);
+    /* Define contexto para elementos decorativos */
+    position: relative;
+    /* Evita overflow horizontal */
+    overflow: hidden;
+}
+
+/* Cria brilho decorativo no topo */
+body::before {
+    /* Necessário para o pseudo-elemento */
+    content: "";
+    /* Posiciona sem influenciar layout */
+    position: fixed;
+    /* Define tamanho do brilho */
+    width: 360px;
+    height: 360px;
+    /* Posiciona no canto superior direito */
+    top: -150px;
+    right: -120px;
+    /* Cria halo rosado suave */
+    background: radial-gradient(circle, rgba(255, 214, 246, 0.32) 0%, rgba(255, 214, 246, 0) 72%);
+    /* Desativa interação */
+    pointer-events: none;
+}
+
+/* Cria brilho decorativo na base */
+body::after {
+    /* Necessário para o pseudo-elemento */
+    content: "";
+    /* Posiciona sem influenciar layout */
+    position: fixed;
+    /* Define tamanho do brilho */
+    width: 320px;
+    height: 320px;
+    /* Posiciona no canto inferior esquerdo */
+    left: -120px;
+    bottom: -120px;
+    /* Cria halo avermelhado suave */
+    background: radial-gradient(circle, rgba(255, 81, 47, 0.3) 0%, rgba(255, 81, 47, 0) 72%);
+    /* Desativa interação */
+    pointer-events: none;
+}
+
+/* Bloco externo da área de autenticação */
+.pagina-autenticacao {
+    /* Deixa o layout fluido em telas pequenas */
+    width: min(92%, 430px);
+    /* Garante camada acima dos brilhos */
+    position: relative;
+    z-index: 1;
+}
+
+/* Card do formulário de cadastro */
+.cartao-autenticacao {
+    /* Define fundo semitransparente refinado */
+    background: var(--card-bg);
+    /* Aplica blur para efeito glass */
+    backdrop-filter: blur(12px);
+    /* Arredonda cantos */
+    border-radius: var(--radius-lg);
+    /* Espaçamento interno confortável */
+    padding: 30px;
+    /* Cria profundidade com sombra */
+    box-shadow: var(--card-shadow);
+    /* Adiciona borda suave */
+    border: 1px solid var(--card-border);
+    /* Faz animação de entrada discreta */
+    animation: cardFadeIn 420ms ease-out;
+}
+
+/* Define animação suave de entrada do cartão */
+@keyframes cardFadeIn {
+    /* Estado inicial da animação */
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.99);
+    }
+    /* Estado final da animação */
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Título principal da página */
+.cartao-autenticacao h1 {
+    /* Remove margem superior */
+    margin: 0 0 8px;
+    /* Mantém destaque visual */
+    font-size: clamp(1.55rem, 2.2vw, 1.9rem);
+    /* Aplica cor principal */
+    color: var(--text-main);
+    /* Ajusta microtipografia */
+    letter-spacing: 0.2px;
+}
+
+/* Subtítulo explicativo */
+.subtitulo {
+    /* Dá espaço entre título e formulário */
+    margin: 0 0 22px;
+    /* Mantém tamanho discreto */
+    font-size: 0.94rem;
+    /* Usa cor secundária suave */
+    color: #f8e9ff;
+}
+
+/* Rótulos dos campos */
+label {
+    /* Exibe labels em bloco */
+    display: block;
+    /* Espaçamento consistente */
+    margin: 11px 0 6px;
+    /* Reforça leitura */
+    font-weight: 600;
+    /* Mantém contraste alto */
+    color: #fff4ff;
+}
+
+/* Campos de texto, senha e seleção */
+input,
+select {
+    /* Ocupa largura total */
+    width: 100%;
+    /* Define conforto ao digitar */
+    padding: 12px 14px;
+    /* Borda inicial transparente para transição suave */
+    border: 1px solid transparent;
+    /* Arredonda os cantos */
+    border-radius: var(--radius);
+    /* Fundo claro para leitura */
+    background: rgba(255, 255, 255, 0.93);
+    /* Cor do texto digitado */
+    color: #261732;
+    /* Tamanho de fonte equilibrado */
+    font-size: 0.98rem;
+    /* Distância entre campos */
+    margin-bottom: 6px;
+    /* Suaviza mudanças de foco */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Define estilo do placeholder */
+input::placeholder {
+    /* Usa cor mais neutra para texto auxiliar */
+    color: #715e7d;
+}
+
+/* Ajusta visual do campo select para manter padrão do formulário */
+select {
+    /* Mantém cursor de seleção */
+    cursor: pointer;
+    /* Remove aparência nativa para padronização */
+    appearance: none;
+    /* Adiciona seta simples como ícone de fundo */
+    background-image: linear-gradient(45deg, transparent 50%, #6b5778 50%), linear-gradient(135deg, #6b5778 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% + 1px), calc(100% - 13px) calc(50% + 1px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+/* Destaque visual no foco dos campos */
+input:focus-visible,
+select:focus-visible {
+    /* Remove contorno padrão */
+    outline: none;
+    /* Marca campo ativo com cor do tema */
+    border-color: rgba(255, 124, 196, 0.8);
+    /* Aplica halo de foco acessível */
+    box-shadow: 0 0 0 3px rgba(255, 124, 196, 0.4);
+}
+
+/* Botão principal do cadastro */
+button {
+    /* Largura total para simetria */
+    width: 100%;
+    /* Espaçamento interno */
+    padding: 12px;
+    /* Distância do último input */
+    margin-top: 12px;
+    /* Remove borda padrão */
+    border: none;
+    /* Arredonda cantos */
+    border-radius: var(--radius);
+    /* Mantém gradiente no mesmo estilo */
+    background: var(--btn-gradient);
+    /* Texto branco */
+    color: #ffffff;
+    /* Peso forte */
+    font-weight: 700;
+    /* Cursor de clique */
+    cursor: pointer;
+    /* Anima transições */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+    /* Sobe levemente para feedback */
+    transform: translateY(-1px);
+    /* Intensifica destaque com sombra */
+    box-shadow: var(--btn-shadow);
+    /* Aumenta brilho sutilmente */
+    filter: brightness(1.03);
+}
+
+/* Efeito no clique do botão */
+button:active {
+    /* Retorna à posição inicial */
+    transform: translateY(0);
+}
+
+/* Área para mensagens de status */
+.mensagem {
+    /* Mantém altura mínima para estabilidade visual */
+    min-height: 22px;
+    /* Espaçamento em torno da mensagem */
+    margin: 12px 0;
+    /* Cor clara para boa visibilidade */
+    color: #fff4d9;
+    /* Enfatiza o texto da mensagem */
+    font-weight: 600;
+    /* Melhora leitura */
+    line-height: 1.35;
+}
+
+/* Texto de navegação entre páginas */
+.troca-pagina {
+    /* Ajusta margem no rodapé */
+    margin: 7px 0 0;
+    /* Cor secundária suave */
+    color: var(--text-soft);
+    /* Tamanho discreto */
+    font-size: 0.95rem;
+}
+
+/* Link para retornar ao login */
+.troca-pagina a {
+    /* Cor viva para destaque */
+    color: var(--accent-link);
+    /* Remove sublinhado padrão */
+    text-decoration: none;
+    /* Reforça identificação de link */
+    font-weight: 700;
+}
+
+/* Efeito do link ao passar o mouse */
+.troca-pagina a:hover {
+    /* Sublinha para indicar interação */
+    text-decoration: underline;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+    /* Reduz padding do cartão no mobile */
+    .cartao-autenticacao {
+        padding: 24px 20px;
+    }
+}
+
+/* Respeita usuários com preferência por menos animação */
+@media (prefers-reduced-motion: reduce) {
+    /* Remove animações e transições não essenciais */
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

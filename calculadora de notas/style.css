@@ -1,0 +1,300 @@
+﻿/* Variáveis globais das páginas internas */
+:root {
+    /* Define tipografia base do sistema */
+    --font-base: "Segoe UI", "Trebuchet MS", sans-serif;
+    /* Define raio padrão dos elementos */
+    --radius: 12px;
+    /* Define cor principal do texto */
+    --text-main: #e2e8f0;
+    /* Define cor de títulos */
+    --text-title: #f8fafc;
+    /* Define cor secundária */
+    --text-soft: #cbd5e1;
+    /* Define fundo translúcido para painéis */
+    --panel-bg: rgba(15, 23, 42, 0.46);
+    /* Define borda dos painéis */
+    --panel-border: rgba(148, 163, 184, 0.28);
+    /* Define gradiente principal dos botões */
+    --btn-gradient: linear-gradient(120deg, #38bdf8, #0ea5e9);
+    /* Define gradiente para botão de sair */
+    --btn-exit-gradient: linear-gradient(120deg, #64748b, #475569);
+    /* Define sombra padrão de botão */
+    --btn-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
+}
+
+/* Aplica box model previsível em todos os elementos */
+* {
+    /* Inclui padding e borda no cálculo do tamanho */
+    box-sizing: border-box;
+}
+
+/* Estilo global para páginas internas do sistema */
+body {
+    /* Define fonte legível e moderna */
+    font-family: var(--font-base);
+    /* Remove margem padrão */
+    margin: 0;
+    /* Mantém altura mínima de viewport */
+    min-height: 100vh;
+    /* Adiciona degradê no mesmo estilo existente */
+    background: linear-gradient(135deg, #0f172a, #1e293b 45%, #334155);
+    /* Organiza layout vertical */
+    display: flex;
+    flex-direction: column;
+    /* Centraliza conteúdo horizontalmente */
+    align-items: center;
+    /* Define espaçamento geral da tela */
+    padding: 38px 18px;
+    /* Ajusta cor base do texto */
+    color: var(--text-main);
+    /* Define contexto para elementos decorativos */
+    position: relative;
+    /* Evita overflow horizontal */
+    overflow-x: hidden;
+}
+
+/* Cria brilho de fundo para dar profundidade */
+body::before {
+    /* Necessário para renderizar pseudo-elemento */
+    content: "";
+    /* Posiciona sem afetar o layout */
+    position: fixed;
+    /* Define tamanho do brilho */
+    width: 400px;
+    height: 400px;
+    /* Posiciona no topo esquerdo */
+    top: -170px;
+    left: -140px;
+    /* Cria halo azulado suave */
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.24) 0%, rgba(56, 189, 248, 0) 72%);
+    /* Desativa interação com mouse */
+    pointer-events: none;
+}
+
+/* Cria segundo brilho de fundo */
+body::after {
+    /* Necessário para renderizar pseudo-elemento */
+    content: "";
+    /* Posiciona sem afetar o layout */
+    position: fixed;
+    /* Define tamanho do brilho */
+    width: 360px;
+    height: 360px;
+    /* Posiciona no canto inferior direito */
+    right: -130px;
+    bottom: -140px;
+    /* Cria halo complementar */
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(14, 165, 233, 0) 72%);
+    /* Desativa interação com mouse */
+    pointer-events: none;
+}
+
+/* Títulos principais das telas */
+h1,
+h2 {
+    /* Remove margem superior */
+    margin-top: 0;
+    /* Centraliza títulos */
+    text-align: center;
+    /* Define cor dos títulos */
+    color: var(--text-title);
+    /* Ajusta microtipografia */
+    letter-spacing: 0.2px;
+    /* Garante camada sobre brilho decorativo */
+    position: relative;
+    z-index: 1;
+}
+
+/* Subtítulo com usuário logado */
+#usuarioLogado {
+    /* Espaçamento abaixo do subtítulo */
+    margin-bottom: 10px;
+    /* Define tamanho de texto discreto */
+    font-size: 1.05rem;
+    /* Cor secundária */
+    color: var(--text-soft);
+}
+
+/* Campos de entrada padrão do sistema */
+input {
+    /* Define largura responsiva */
+    width: min(420px, 92vw);
+    /* Ajusta altura interna */
+    padding: 12px 14px;
+    /* Espaço entre campos */
+    margin: 6px 0;
+    /* Remove estilo nativo de borda */
+    border: 1px solid transparent;
+    /* Arredonda cantos */
+    border-radius: var(--radius);
+    /* Define tamanho da fonte */
+    font-size: 0.98rem;
+    /* Fundo claro para contraste */
+    background: #f8fafc;
+    /* Cor do texto */
+    color: #0f172a;
+    /* Suaviza transições de foco */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Garante camada acima do brilho */
+    position: relative;
+    z-index: 1;
+}
+
+/* Define estilo do placeholder */
+input::placeholder {
+    /* Usa tom neutro para texto auxiliar */
+    color: #64748b;
+}
+
+/* Destaque no foco dos campos */
+input:focus-visible {
+    /* Remove contorno nativo */
+    outline: none;
+    /* Marca borda com cor do tema */
+    border-color: rgba(56, 189, 248, 0.85);
+    /* Adiciona halo de foco acessível */
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+
+/* Botões padrão do sistema */
+button {
+    /* Largura igual aos campos */
+    width: min(420px, 92vw);
+    /* Espaçamento interno */
+    padding: 12px 14px;
+    /* Espaço entre botões */
+    margin-top: 9px;
+    /* Remove borda padrão */
+    border: none;
+    /* Arredonda cantos */
+    border-radius: var(--radius);
+    /* Mantém gradiente principal */
+    background: var(--btn-gradient);
+    /* Texto branco */
+    color: #ffffff;
+    /* Reforça peso da fonte */
+    font-weight: 700;
+    /* Cursor de clique */
+    cursor: pointer;
+    /* Suaviza interações */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    /* Garante camada sobre brilho */
+    position: relative;
+    z-index: 1;
+}
+
+/* Interação visual ao passar o mouse no botão */
+button:hover {
+    /* Eleva levemente o botão */
+    transform: translateY(-1px);
+    /* Aumenta profundidade */
+    box-shadow: var(--btn-shadow);
+    /* Aumenta brilho sutilmente */
+    filter: brightness(1.03);
+}
+
+/* Efeito ao clicar no botão */
+button:active {
+    /* Retorna posição inicial ao clique */
+    transform: translateY(0);
+}
+
+/* Aplica estilo secundário ao botão de sair */
+button[onclick="logout()"] {
+    /* Usa gradiente mais neutro para ação de saída */
+    background: var(--btn-exit-gradient);
+}
+
+/* Ajusta sombra do botão de sair em hover */
+button[onclick="logout()"]:hover {
+    /* Mantém profundidade compatível com tom neutro */
+    box-shadow: 0 10px 24px rgba(71, 85, 105, 0.35);
+}
+
+/* Área de saída principal para mensagens e resultados */
+#resultado {
+    /* Espaço acima do bloco */
+    margin-top: 16px;
+    /* Largura controlada para leitura */
+    width: min(520px, 92vw);
+    /* Espaçamento interno */
+    padding: 14px;
+    /* Fundo translúcido de painel */
+    background: var(--panel-bg);
+    /* Borda suave */
+    border: 1px solid var(--panel-border);
+    /* Arredonda cantos */
+    border-radius: var(--radius);
+    /* Peso de texto intermediário */
+    font-weight: 600;
+    /* Centraliza texto */
+    text-align: center;
+    /* Cor de texto clara */
+    color: var(--text-main);
+    /* Melhora legibilidade */
+    line-height: 1.45;
+    /* Garante camada sobre brilho */
+    position: relative;
+    z-index: 1;
+}
+
+/* Lista de alunos no painel */
+#lista {
+    /* Define largura máxima confortável */
+    width: min(560px, 92vw);
+    /* Espaço acima da lista */
+    margin-top: 16px;
+    /* Fundo de painel translúcido */
+    background: var(--panel-bg);
+    /* Borda discreta */
+    border: 1px solid var(--panel-border);
+    /* Cantos arredondados */
+    border-radius: var(--radius);
+    /* Espaçamento interno */
+    padding: 12px;
+    /* Garante camada sobre brilho */
+    position: relative;
+    z-index: 1;
+}
+
+/* Parágrafos dentro da lista de alunos */
+#lista p {
+    /* Ajusta espaçamento dos itens */
+    margin: 8px 0;
+    /* Define cor clara do texto */
+    color: #f1f5f9;
+}
+
+/* Blocos individuais de aluno em resultados */
+.aluno {
+    /* Distância entre registros */
+    margin: 8px 0;
+    /* Preenchimento interno */
+    padding: 8px 10px;
+    /* Fundo suave para separar itens */
+    background: rgba(148, 163, 184, 0.12);
+    /* Arredonda cantos */
+    border-radius: 9px;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+    /* Reduz espaçamento geral no mobile */
+    body {
+        padding: 26px 14px;
+    }
+
+    /* Ajusta tamanho dos títulos no mobile */
+    h1 {
+        font-size: 1.55rem;
+    }
+}
+
+/* Respeita usuários com preferência por menos animação */
+@media (prefers-reduced-motion: reduce) {
+    /* Remove animações e transições não essenciais */
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
