@@ -75,4 +75,22 @@ POST /backend/api/alunos.php
 
 ## Status
 
-Projeto academico funcional, com foco em backend PHP, banco de dados e controle de acesso simples.
+Implementação acadêmica, com foco em backend PHP, banco de dados e controle de acesso simples.
+
+## Modelo de dados, fluxo e limites
+
+A interface chama `backend/api/`; os endpoints usam funções comuns de sessão/JSON e PDO. `usuarios` tem relação 1:N com `alunos` via `usuario_id`, com exclusão em cascata. A média aritmética de três notas é arredondada a duas casas: média ≥7 aprova, ≥5 fica em recuperação, abaixo de 5 reprova.
+
+O cadastro aceita `cargo=admin` ou `comum` sem exigir administrador existente. É uma demonstração acadêmica que precisa restringir a criação de administradores antes de exposição pública. Não há proteção CSRF ou limite de tentativas de login implementados nesses endpoints.
+
+### Configuração reproduzível
+
+Requer PHP 8+, PDO MySQL, mbstring e MySQL/MariaDB. O [exemplo de variáveis](.env.example) é referência: o PHP lê o ambiente com `getenv` e **não carrega `.env` automaticamente**. Configure as cinco variáveis no processo/servidor PHP antes de iniciá-lo, usando o banco local `calculadora_notas`. No XAMPP, confira como o Apache recebe essas variáveis.
+
+O SQL em `calculadora de notas/backend/database.sql` cria banco/tabelas. Importe manualmente apenas em instância local destinada ao projeto. Não há executor de migrations ou Composer versionado. Nenhuma importação foi executada nesta revisão.
+
+Exemplo de leitura após login local: `GET /calculadora-notas/backend/api/alunos.php`, com cookie de sessão. O POST recebe `nome`, `nota1`, `nota2`, `nota3`. Não há endpoints de edição/exclusão de alunos nesse arquivo.
+
+### Testes e evolução
+
+Não há suíte automatizada ou CI versionados. A auditoria inspecionou código, sem login ou escrita em banco. Prioridades: testar isolamento entre perfis, notas limítrofes e restringir atribuição de administrador. Não há licença versionada.
